@@ -1,0 +1,144 @@
+# Some dataA
+
+# RClone setup installation
+
+# Note: for mounting a local drive https://rclone.org/commands/rclone_mount/
+
+#     To mount it as a drive:
+#         Nope: rclone mount JKRGDrive: /home/jku/JKRGDrive/
+#     or silent
+#         rclone mount --daemon JKRGDrive: /home/jku/JKRGDrive/
+#     unmount
+#         # Linux
+#         fusermount -u /path/to/local/mount
+#
+# Currently mounted drives
+#   df -h
+#
+# Target: JKRGDrive
+
+
+https://forum.rclone.org/t/how-to-create-and-use-a-google-drive-client-id/9605
+
+Scopes:
+https://developers.google.com/drive/api/guides/api-specific-auth#:~:text=Configure%20the%20OAuth%20consent%20screen,scopes%20used%20by%20the%20app.
+    https://www.googleapis.com/auth/drive
+    https://www.googleapis.com/auth/drive.file
+    https://www.googleapis.com/auth/docs
+    https://www.googleapis.com/auth/drive.metadata.readonly
+
+Google API:
+    https://console.cloud.google.com/apis/credentials/consent?project=jkrgdriverclone&supportedpurview=project
+    JKRGDriveRClone
+
+See https://rclone.org/drive/#making-your-own-client-id for how to create your own
+    ClientID: 920225360967-67b3haduhbsbp8f9m15abfq25kf3be8p.apps.googleusercontent.com
+    Secret: LookInSafe
+
+Need service_account_file? (JSON)
+
+Use web browser to automatically authenticate rclone with remote?
+ * Say Y if the machine running rclone has a web browser you can use
+ * Say N if running rclone on a (remote) machine without web browser access
+If not sure try Y. If Y failed, try N.
+
+y) Yes (default)
+n) No
+y/n> y
+
+2024/06/01 12:32:00 NOTICE: Make sure your Redirect URL is set to "http://127.0.0.1:53682/" in your custom config.
+2024/06/01 12:32:00 NOTICE: If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth?state=K32No-Q-ruq1JNOqdwIo-Q
+2024/06/01 12:32:00 NOTICE: Log in and authorize rclone for access
+2024/06/01 12:32:00 NOTICE: Waiting for code...
+2024/06/01 12:32:25 NOTICE: Got code
+Configure this as a Shared Drive (Team Drive)?
+
+y) Yes
+n) No (default)
+y/n> n
+
+Configuration complete.
+Options:
+- type: drive
+- client_id: 920225360967-67b3haduhbsbp8f9m15abfq25kf3be8p.apps.googleusercontent.com
+- client_secret: LookInSafe
+- scope: drive
+- token: {"access_token":"LookInSafe","expiry":"2024-06-01T13:32:25.214786747-07:00"}
+- team_drive:
+Keep this "JKRGDrive" remote?
+y) Yes this is OK (default)
+e) Edit this remote
+d) Delete this remote
+y/e/d>
+
+Current remotes:
+
+Name                 Type
+====                 ====
+JKRGDrive            drive
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e/n/d/r/c/s/q> q
+
+######################################
+
+rclone ls JKRGDrive:
+
+######################################
+
+rclone ls JKRGDrive:
+2024/06/01 12:47:59 Failed to create file system for "JKRGDrive:": couldn't find root directory ID: googleapi: Error 403: Google Drive API has not been used in project 920225360967 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=920225360967 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+Details:
+[
+  {
+    "@type": "type.googleapis.com/google.rpc.Help",
+    "links": [
+      {
+        "description": "Google developers console API activation",
+        "url": "https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=920225360967"
+      }
+    ]
+  },
+  {
+    "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+    "domain": "googleapis.com",
+    "metadata": {
+      "consumer": "projects/920225360967",
+      "service": "drive.googleapis.com"
+    },
+    "reason": "SERVICE_DISABLED"
+  }
+]
+, accessNotConfigured
+
+######################################
+
+To authorize the API:
+    https://console.cloud.google.com/apis/api/drive.googleapis.com/metrics?project=jkrgdriverclone
+
+######################################
+
+To mount it as a drive:
+    Nope: rclone mount JKRGDrive: /home/jku/JKRGDrive/
+or silent
+    rclone mount --daemon JKRGDrive: /home/jku/JKRGDrive/
+unmount
+    # Linux
+    fusermount -u /path/to/local/mount
+
+https://click.convertkit-mail.com/zlu2839o0obwf6mddviph298nn00u6/x0hph6hwowgn77u5/aHR0cHM6Ly9hcHAuY29udmVydGtpdC5jb20vZm9ybXMvY29uZmlybT9rZXk9ZTJkMjY1YWIwMDgxZDQxNjJhNWFlNTBhMjk5NzU3NzYxZTY4OTJlMSZzaWQ9ODQzNTIzNjczMQ==
+
+######################################
+
+Linux Crash Course - Scheduling Tasks with Chron
+    https://www.youtube.com/watch?v=7cbP7fzn0D8
+
+# Currently jobs
+# cat /etc/crontab
+crontab -l
